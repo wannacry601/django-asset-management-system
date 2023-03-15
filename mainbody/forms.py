@@ -2,18 +2,24 @@ from django import forms
 from django.contrib import admin
 from django.contrib.auth.models import User
 from datetime import datetime
-from .models import checkout, Asset
+from .models import check_out, Asset
 
 class check_out_form(forms.ModelForm):
     class Meta:
-        model = checkout
-        fields = ('assetID','userID','checkdate')
-      
+        model = check_out
+        fields = ('asset','assetID','user','userID','checkdate')
+    
+    def delete_model(self,request,obj):
+        asset_obj = obj.userID
+        asset_obj.user = Asset.DEFAULT_USER
+        asset_obj.save()
+        obj.delete()
+        
     def clean(self):
         data = super().clean()# field area specified in class Meta.
         print(data)
-        user_name = data.get('userID')
-        asset_name = data.get('assetID')
+        user_name = data.get('user')
+        asset_name = data.get('asset')
         checkdate = data.get('checkdate')
         # Below are the codes that sync the assigned user to asset information table.
         assetrow = Asset.objects.get(assetname=asset_name) # compared to the method of executing SQL functions in views.py, this method is liter and shorter.

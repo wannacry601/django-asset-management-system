@@ -13,9 +13,11 @@ class Asset(models.Model):
         return self.assetname
         # This is what to be shown on admin page for preview. 
         
-class checkout(models.Model):
-    userID = models.ForeignKey(User,default='Available',on_delete=models.CASCADE)
+class check_out(models.Model):
+    user = models.CharField(max_length=100)
+    userID = models.ForeignKey(User,default='0',on_delete=models.CASCADE)
+    asset = models.CharField(max_length=100)
     assetID = models.ForeignKey(Asset,on_delete=models.CASCADE,null=False,default='1145141145142')
     checkdate = models.DateTimeField()
     def __str__(self):
-        return f"{self.assetID}; assigned to '{self.userID}' at '{self.checkdate}'"
+        return f"{self.asset}; assigned to '{self.user}' at {self.checkdate}"

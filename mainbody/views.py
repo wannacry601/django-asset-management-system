@@ -9,11 +9,11 @@ from django.contrib.auth import logout as Logout
 from django.contrib import messages
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
-from .models import checkout
+from .models import check_out
 import sqlite3
 
 class HomeListView(ListView):
-    model = checkout
+    model = check_out
     def get_asset_data(self,**kwargs):
         context = super(HomeListView,self).get_context_data(**kwargs)
         return context 
@@ -41,7 +41,7 @@ def logout(request):
 
 @login_required(login_url='/login/')
 def homepage(request):
-    queryset = list(checkout.objects.filter(userID=request.user.id).values_list("assetID","checkdate"))
+    queryset = list(check_out.objects.filter(user=request.user.username).values_list("asset","checkdate"))
     return render(request,'user/home.html',{"queryset":queryset,"Username":request.user.username})
 
 # Below is the functions controls password changes
