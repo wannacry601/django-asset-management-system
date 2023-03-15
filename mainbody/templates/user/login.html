@@ -5,16 +5,17 @@
     <head>
         {% load static%}    
         <link rel='stylesheet' type='text/css' href="{% static 'mainbody/layout.css' %}" />
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel='stylesheet' type='text/css' href="{% static 'mainbody/button.css' %}" />
     </head>
 
     <body>
-        <div align="center">
+        <div>
+            <center>
             <form class="form" id="form0" method="POST">
                 {% csrf_token %}
                 {% comment %} input username {% endcomment %}
                 <div style>
-                    <label class=form-label style:"margin-top:15px;">user name</label>
+                    <h1 style="margin-bottom:10px;">user name</h1>
                     <div>
                         <input type="text" name="username" placeholder="Please input user name"
                         autocomplete="off">
@@ -23,17 +24,19 @@
                 <p></p><p></p>
                 {% comment %} input password {% endcomment %}
                 <div>
-                    <label class=form-label>password</label>
+                    <h1 style="margin-bottom:10px;">password</h1>
                     <div>
                         <input type="password" name="password" placeholder="Please input password"
                         autocomplete="off">
                     </div>
-                </div>   
+                </div> 
+            </center>
+        </div>  
                 <p></p><p></p>
                 {% comment %} submit {% endcomment %}
-                <div style="display:flex;">
-                    <button class="w3-light-grey w3-border w3-round-small" style="float:left;width:90px;height:40px;">submit</button>
-                    <button class="w3-light-grey w3-border w3-round-small" style="float:right;width:80px;height:40px;" type="reset">reset</button>
+                <div align="center">
+                    <button class="button-left" style="height:30px;">submit</button>
+                    <button class="button-right" style="height:30px;"type="reset">reset</button>
                 </div>
             </form>
         </div>

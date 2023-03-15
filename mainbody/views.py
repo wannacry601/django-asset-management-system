@@ -58,8 +58,8 @@ def passwordchange(request):
         cursor = conn.cursor()
         if authenticate(username=f'{user}', password=f'{oldpass}') is not None: #database verification passed
             if newpassorigin == newpassverifi:
-                if validate_password(newpassorigin) is not None:
-                    messages.error(request,'Password requirement not satisfied. Try again.')
+                if validate_password(newpassorigin) != []:
+                    messages.error(request,'Requirement not fully satisfied. Try again.')
                     return HttpResponseRedirect('/change_password/')
                 from django.contrib.auth.hashers import make_password
                 newpassencrypt = make_password(f'{newpassorigin}')

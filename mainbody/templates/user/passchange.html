@@ -14,6 +14,7 @@
 <head>
     {% load static %}    
     <link rel="stylesheet" href="{% static 'mainbody/button.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'mainbody/input.css' %}" type="text/css" />
     <title>{% block title %}Change password{% endblock %}</title>
 </head>
 
@@ -22,20 +23,22 @@
         {% csrf_token %}
         <div>
             <label>Enter your old password here</label>
+            <p></p>
             <div><input type="password" name="oldpass" autocomplete="off"></div>
         </div>
         <p></p>
         <div>
             <label>Enter your new password here</label>
+            <p></p>
             <div><input type="password" name="newpass0" autocomplete="off"></div>
         </div>
         <p></p>
         <div>
             <label>Enter your new password again</label>
+            <p></p>
             <div><input type="password" name="newpass1" autocomplete="off"></div>
         </div>
-        <p></p>
-        <h3>{{ inquiry }}</h3>
+        <p></p><h3>{{ inquiry }}</h3><p></p>
         <div>
             <div>
                 <button class="button-left">submit</button>

@@ -25,11 +25,9 @@
                 </tbody>
             </table>
             <p></p>
-   {% load static %}
     <form class="form" id="form0" method="POST">
     {% csrf_token %}
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <div sclass="w3-container w3-center">
+    <div>
     <div>
         <label class=form-label>New username</label>
         <div>
@@ -64,8 +62,10 @@
     <div>
         <p></p><strong style='color: red;'>AT LEAST ONE NEW INFORMATION REQUIRED!<strong><p></p>
         </div>
+        {% load static %}
+        <link rel='stylesheet' type='text/css' href="{% static 'mainbody/button.css' %}" />
         <div>
-            <a href="http://127.0.0.1:8000/manage_inf"><button class="w3-button w3-light-grey w3-border w3-round-small">submit</button></a>
+            <a href="http://127.0.0.1:8000/manage_inf"><button class="button-left" style="font-size:110%">submit</button></a>
         </div>
     </form>
     </div>

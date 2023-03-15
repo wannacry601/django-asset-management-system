@@ -5,5 +5,11 @@
 {% block branding %}
 <h1 id="site-name"><a href="http://127.0.0.1:8000/">{{ site_header | default:_('Asset management system') }}</a></h1>
 {% endblock %}
-
+{% block image %}
+<picture>
+    <source media="(min-width: 1000px)" srcset="logo-large.png">
+    <source media="(max-width: 500px)" srcset="logo-small.png">
+    <img src="taffy.jpg">
+</picture>
+{% endblock %}
 {% block nav-global %}{% endblock %}
