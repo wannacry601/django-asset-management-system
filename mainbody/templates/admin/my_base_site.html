@@ -1,0 +1,9 @@
+{% extends "admin/my_base.html" %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title | default:_('Asset management system') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="http://127.0.0.1:8000/">{{ site_header | default:_('Asset management system') }}</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

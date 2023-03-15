@@ -1,0 +1,29 @@
+body {
+    height: 100%;
+}
+
+
+.input-inline {
+    margin-top: 15px;
+    font-size: small;
+}
+
+.form-label {
+    margin-top: 15px;
+}
+
+.background {
+    background-color: cornsilk;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.font_intable {
+    font-size: medium;
+}
+
+.headbackground {
+    background-color: aquamarine;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+    font-style: initial;
+}

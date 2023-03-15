@@ -1,0 +1,23 @@
+button{
+    width:100%;
+    text-align:center;
+    padding:8px 8px
+}
+
+.button-left{
+    float:left;
+    width:90px;
+    height: 40px;
+    background-color: rgb(186, 181, 181);
+    margin-right:15px;
+    border-radius: 4px;
+    border-color: #b9b9b9;
+}
+
+.button-right{
+    width: 90px;
+    height: 40px;
+    background-color: rgb(186, 181, 181);
+    border-radius: 4px;
+    border-color: #b9b9b9;
+}

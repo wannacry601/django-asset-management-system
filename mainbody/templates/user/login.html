@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends 'admin/my_login_base.html' %} 
+{% block content %}
+<html lang="en">
+    <head>
+        {% load static%}    
+        <link rel='stylesheet' type='text/css' href="{% static 'mainbody/layout.css' %}" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    </head>
+
+    <body>
+        <div align="center">
+            <form class="form" id="form0" method="POST">
+                {% csrf_token %}
+                {% comment %} input username {% endcomment %}
+                <div style>
+                    <label class=form-label style:"margin-top:15px;">user name</label>
+                    <div>
+                        <input type="text" name="username" placeholder="Please input user name"
+                        autocomplete="off">
+                    </div>
+                </div>   
+                <p></p><p></p>
+                {% comment %} input password {% endcomment %}
+                <div>
+                    <label class=form-label>password</label>
+                    <div>
+                        <input type="password" name="password" placeholder="Please input password"
+                        autocomplete="off">
+                    </div>
+                </div>   
+                <p></p><p></p>
+                {% comment %} submit {% endcomment %}
+                <div style="display:flex;">
+                    <button class="w3-light-grey w3-border w3-round-small" style="float:left;width:90px;height:40px;">submit</button>
+                    <button class="w3-light-grey w3-border w3-round-small" style="float:right;width:80px;height:40px;" type="reset">reset</button>
+                </div>
+            </form>
+        </div>
+    </body>
+    <script>
+        layui.use('form', function(){
+            var form = layui.form;
+            form.on('submit(form0)', function(data){
+                layer.msg(JSON.stringify(data.field));
+                return false
+                })
+            })
+    </script>
+</html>
+{% endblock %}

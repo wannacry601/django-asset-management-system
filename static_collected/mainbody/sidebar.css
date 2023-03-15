@@ -1,0 +1,36 @@
+.sidebar {
+    height: 80%;
+    width: 200px;
+    position: fixed;
+    top: 40;
+    left: 0;
+    background-color: #79aec5;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    display: block;
+    color: silver;
+    padding: 16px;
+    text-decoration: none;
+}
+    
+.sidebar a:hover {
+    background-color: #000;
+    color: white;
+}
+   
+.main {
+    margin-left: 200px;
+    padding: 20px;
+}
+
+.bar-item {
+    padding:8px 16px;
+    float:left;
+    width:auto;
+    border:none;
+    display:block;
+    outline:0
+}

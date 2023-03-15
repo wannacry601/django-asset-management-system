@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends 'admin/my_base_site.html'%}
+{% block content %}
+<html>
+<!--  
+{% if messages %}
+    <script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}');
+        {% endfor %}
+    </script>
+    {% endif %}
+-->  
+<head>
+    {% load static %}    
+    <link rel="stylesheet" href="{% static 'mainbody/button.css' %}" type="text/css" />
+    <title>{% block title %}Change password{% endblock %}</title>
+</head>
+
+<body>
+    <form id="form0" method="POST" style="margin-left:5px;">
+        {% csrf_token %}
+        <div>
+            <label>Enter your old password here</label>
+            <div><input type="password" name="oldpass" autocomplete="off"></div>
+        </div>
+        <p></p>
+        <div>
+            <label>Enter your new password here</label>
+            <div><input type="password" name="newpass0" autocomplete="off"></div>
+        </div>
+        <p></p>
+        <div>
+            <label>Enter your new password again</label>
+            <div><input type="password" name="newpass1" autocomplete="off"></div>
+        </div>
+        <p></p>
+        <h3>{{ inquiry }}</h3>
+        <div>
+            <div>
+                <button class="button-left">submit</button>
+                <button class="button-right" type="reset">reset</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+{% endblock %}
+
