@@ -7,7 +7,7 @@ from .models import check_out, Asset
 class check_out_form(forms.ModelForm):
     class Meta:
         model = check_out
-        fields = ('asset','assetID','user','userID','checkdate')
+        fields = ('assetID','userID','checkdate')
     
     def delete_model(self,request,obj):
         asset_obj = obj.userID
@@ -18,8 +18,8 @@ class check_out_form(forms.ModelForm):
     def clean(self):
         data = super().clean()# field area specified in class Meta.
         print(data)
-        user_name = data.get('user')
-        asset_name = data.get('asset')
+        user_name = data.get('userID')
+        asset_name = data.get('assetID')
         checkdate = data.get('checkdate')
         # Below are the codes that sync the assigned user to asset information table.
         assetrow = Asset.objects.get(assetname=asset_name) # compared to the method of executing SQL functions in views.py, this method is liter and shorter.

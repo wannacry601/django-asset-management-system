@@ -20,4 +20,4 @@ class check_out(models.Model):
     assetID = models.ForeignKey(Asset,on_delete=models.CASCADE,null=False,default='1145141145142')
     checkdate = models.DateTimeField()
     def __str__(self):
-        return f"{self.asset}; assigned to '{self.user}' at {self.checkdate}"
+        return f"{self.assetID}; assigned to '{self.userID}' at {self.checkdate}"
