@@ -7,7 +7,7 @@ from .models import check_out, Asset
 class check_out_form(forms.ModelForm):
     class Meta:
         model = check_out
-        fields = ('assetID','userID','checkdate')
+        fields = ('asset','assetID','user','userID','checkdate')
     
     def delete_model(self,request,obj):
         asset_obj = obj.userID

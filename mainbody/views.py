@@ -41,7 +41,7 @@ def logout(request):
 
 @login_required(login_url='/login/')
 def homepage(request):
-    queryset = list(check_out.objects.filter(userID=request.user.id).values_list("assetID","checkdate"))
+    queryset = list(check_out.objects.filter(userID=request.user.id).values_list("asset","checkdate"))
     return render(request,'user/home.html',{"queryset":queryset,"Username":request.user.username})
 
 # Below is the functions controls password changes
@@ -59,7 +59,7 @@ def passwordchange(request):
         if authenticate(username=f'{user}', password=f'{oldpass}') is not None: #database verification passed
             if newpassorigin == newpassverifi:
                 if validate_password(newpassorigin) != []:
-                    messages.error(request,'Requirement not fully satisfied. Try again.')
+                    messages.error(request,'One or more requirements not satisfied. Try again.')
                     return HttpResponseRedirect('/change_password/')
                 from django.contrib.auth.hashers import make_password
                 newpassencrypt = make_password(f'{newpassorigin}')
@@ -71,7 +71,7 @@ def passwordchange(request):
                 messages.error(request,'Different new passwords. Try again.')
                 return HttpResponseRedirect('/change_password/')
         else:
-            messages.error(request,"Password incorrect, try again")
+            messages.error(request,"Password incorrect. Try again")
             return HttpResponseRedirect('/change_password/')
 
 @login_required(login_url='/login/')
@@ -87,7 +87,12 @@ def manageinf(request):
         print(request.POST.get("username"))
         user = request.user.username
         conn = sqlite3.connect('db.sqlite3')
-        cursor = conn.cursor()               
+        cursor = conn.cursor()
+        print([request.POST.get("email"),request.POST.get("firstname"),request.POST.get("lastname"),request.POST.get("username")])
+        if [request.POST.get("email"),request.POST.get("firstname"),request.POST.get("lastname"),request.POST.get("username")] == ['','','','']:
+            messages.error(request,"You need to change at least one information!")
+            return HttpResponseRedirect('/manage_inf/')
+        
         if request.POST.get("email") != '': 
             email = request.POST.get("email")                                                                   # First is to check if the user has changed the info
             cursor.execute(f"UPDATE auth_user SET email=\'{email}\' WHERE username = \'{user}\'")               # (detailed in if argument)
