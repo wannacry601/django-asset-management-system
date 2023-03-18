@@ -6,6 +6,7 @@
         {% load static%}    
         <link rel='stylesheet' type='text/css' href="{% static 'mainbody/layout.css' %}" />
         <link rel='stylesheet' type='text/css' href="{% static 'mainbody/button.css' %}" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
 
     <body>
@@ -29,7 +30,8 @@
                         <input type="password" name="password" placeholder="Please input password"
                         autocomplete="off">
                     </div>
-                </div> 
+                </div>
+                <p><a href="{% url 'password_reset' %}">Forgot password?</a></p>
             </center>
         </div>  
                 <p></p><p></p>

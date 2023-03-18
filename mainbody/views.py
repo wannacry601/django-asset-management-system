@@ -31,21 +31,21 @@ def login(request):
             return HttpResponseRedirect('/')
         else:
             messages.error(request,'Wrong user name or password, try again.')
-            return HttpResponseRedirect('/login/')
+            return HttpResponseRedirect('accounts/login/')
 
-@login_required(login_url='/login/')
+@login_required(login_url='accounts/login/')
 def logout(request):
     Logout(request)
     messages.success(request,'Logged out sucessfully!')
     return HttpResponseRedirect('/login/')
 
-@login_required(login_url='/login/')
+@login_required(login_url='accounts/login/')
 def homepage(request):
     queryset = list(check_out.objects.filter(userID=request.user.id).values_list("asset","checkdate"))
     return render(request,'user/home.html',{"queryset":queryset,"Username":request.user.username})
 
 # Below is the functions controls password changes
-@login_required(login_url='/login/')
+@login_required(login_url='accounts/login/')
 def passwordchange(request):
     if request.method == 'GET':
         return render(request,'user/passchange.html',{'inquiry':password_validators_help_text_html(),"Username":request.user.username})
@@ -74,7 +74,7 @@ def passwordchange(request):
             messages.error(request,"Password incorrect. Try again")
             return HttpResponseRedirect('/change_password/')
 
-@login_required(login_url='/login/')
+@login_required(login_url='accounts/login/')
 def manageinf(request):
     if request.method == 'GET':
         user = request.user.username
@@ -104,25 +104,24 @@ def manageinf(request):
             cursor.execute(f"UPDATE auth_user SET last_name=\'{lastname}\' WHERE username = \'{user}\'")
         
         # change username
-        status = True                                                                                           # Change user name is unique because:
+        in_database =  False                                                                                    # Change user name is unique because:
         for item in list(cursor.execute("SELECT username FROM auth_user")):                                     # 1. Above three db executions depend on the username column in table.
             if request.POST.get("username") in item:                                                            # 2. username in database should be UNIQUE so there should be                                                                                      
-                break                                                                                           #    exists in database. That's through a status bool variable and a for progress.
-        if request.POST.get("username") != '' and status:                                                       #    if new username confilcts, status should be false.
-            username = request.POST.get("username")                                                             # 3. After username is changed, assets in table check_out should also change
-            cursor.execute(f"UPDATE auth_user SET username=\'{username}\' WHERE username = \'{user}\'")         #    corresponding usernames.
-            cursor.execute(f"UPDATE mainbody_check_out SET user=\'{username}\' WHERE user = \'{user}\'") 
-        else:
-            messages.error(request,'User name already exists. Try another name.')
-            return HttpResponseRedirect('/manage_inf/')
+                in_database = True                                                                              #    exists in database. That's through a status bool variable and a for progress.
+                break                                                                                           #    if new username confilcts, status should be false.
+        if request.POST.get("username") != '':                                                                  # 3. After username is changed, assets in table check_out should also change 
+            if in_database:                                                                                     #    corresponding usernames.
+                messages.error(request,'User name already exists. Try another name.')                              
+                return HttpResponseRedirect('/manage_inf/')
+            else:
+                username = request.POST.get("username")                                                             
+                cursor.execute(f"UPDATE auth_user SET username=\'{username}\' WHERE username = \'{user}\'")         
+                cursor.execute(f"UPDATE mainbody_check_out SET user=\'{username}\' WHERE user = \'{user}\'") 
         
         conn.commit()
         cursor.close() #security/thread occupation concern
         messages.success(request,'Your information has been changed.')
         return HttpResponseRedirect("/")
-
-'''@login_required(login_url='/login/')
-def admin_page(request):'''
 
 
 '''

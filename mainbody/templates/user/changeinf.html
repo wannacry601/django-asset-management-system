@@ -2,15 +2,9 @@
 {% extends 'admin/my_base_site.html' %} 
 {% block content %}
 <html>
-    {% if messages %}
-    <script>
-        {% for msg in messages %}
-            alert('{{ msg.message }}');
-        {% endfor %}
-    </script>
-    {% endif %}
     <body>
-            <table>
+        {% include 'user/sidebar.html' %} 
+        <table>
                 <thead>
                     {% for infoname in infolist %}
                     <th><h3>   {{ infoname }}   </h3></th>

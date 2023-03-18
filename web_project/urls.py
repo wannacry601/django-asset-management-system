@@ -21,5 +21,6 @@ from mainbody import urls,views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",include(urls)),
-    path("login/",views.login),
+    path("accounts/login/",views.login),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

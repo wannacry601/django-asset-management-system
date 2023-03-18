@@ -137,3 +137,4 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 DATETIME_INPUT_FORMAT="%Y-%m-%d %H:%M:%S"
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

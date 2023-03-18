@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        .sidebar {
+            height: 80%;
+            width: 200px;
+            position: fixed;
+            top: 40;
+            left: 0;
+            background-color: #79aec5;
+            overflow-x: hidden;
+            padding-top: 20px;
+          }
+
+          .sidebar a {
+            display: block;
+            color: silver;
+            padding: 16px;
+            text-decoration: none;
+          }
+    
+          .sidebar a:hover {
+            background-color: #000;
+            color: white;
+          }
+    
+          .main {
+            margin-left: 200px;
+            padding: 20px;
+          }
+    </style>
+
+    <body>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <div class="w3-sidebar w3-bar-block w3-card" style="left:0;width=125%;margin-top:0;position:absolute;">
+            <a href="http://127.0.0.1:8000/change_password" class="w3-bar-item w3-button">change password</a>
+            <a href="http://127.0.0.1:8000/manage_inf" class="w3-bar-item w3-button">manage information</a>
+            <a href="http://127.0.0.1:8000/admin" class="w3-bar-item w3-button">admin site</a>
+            <a href="http://127.0.0.1:8000/logout" class="w3-bar-item w3-button">logout</a>
+        </div>
+    </body>
+<html> 
